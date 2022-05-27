@@ -1,7 +1,7 @@
-import Negotiator from './Negotiator';
+import RequestContructor from './RequestContructor';
 import Modal from './Modal';
 import TicketsList from './TicketsList';
-import AddBtn from './AddBtn';
+import EventButton from './EventButton';
 
 const modalEl = document.querySelector('.modal');
 const modalFormEl = modalEl.querySelector('.modal__form');
@@ -10,19 +10,18 @@ const modalFormControlsEl = modalEl.querySelector('.form__controls');
 const modalFormDescriptionEl = modalEl.querySelector('.form__description');
 const cancelBtnEl = modalEl.querySelector('.modal__button-cancel');
 const ticketsListEl = document.querySelector('.tickets__list');
-
 const addBtnEl = document.querySelector('.add-button');
 
-const addBtn = new AddBtn(
+const eventButton = new EventButton(
   addBtnEl,
   modalEl,
   modalHeaderEl,
   modalFormControlsEl,
 );
 
-addBtn.assignHandler();
+eventButton.assignHandler();
 
-const negotiator = new Negotiator('https://localhost:3000');
+const requestContructor = new RequestContructor('https://localhost:3000');
 
 const modal = new Modal(
   modalEl,
@@ -32,7 +31,7 @@ const modal = new Modal(
   modalFormDescriptionEl,
   cancelBtnEl,
   ticketsListEl,
-  negotiator,
+  requestContructor,
 );
 
 modal.assignCommonHandler();
@@ -45,7 +44,7 @@ const ticketsList = new TicketsList(
   modalHeaderEl,
   modalFormControlsEl,
   modalFormDescriptionEl,
-  negotiator,
+  requestContructor,
 );
 
 ticketsList.assignHandler();

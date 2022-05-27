@@ -1,13 +1,10 @@
-export default class TemplateEngine {
-    static getTicketHTML(data) {
-        const {
-            id,
-            name,
-            description,
-            status,
-            created,
-        } = data;
-        return `
+export default class HtmlTicket {
+  static getTicketHTML(data) {
+    const {
+      id, name, description, status, created,
+    } = data;
+
+    return `
         <div class="ticket" id="${id}">
           <a href="#" class="ticket__control-status ${status ? 'active' : ''}"></a>
           <div class="ticket__name">
@@ -19,5 +16,5 @@ export default class TemplateEngine {
           <a href="#" class="ticket__control-delete">&#10005;</a>
         </div>
       `;
-    }
+  }
 }
