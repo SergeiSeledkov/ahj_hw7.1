@@ -1,35 +1,71 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 
 <head>
 	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title></title>
+	<title>Document</title>
 </head>
 
 <body>
-	<button class="add-button">Добавить тикет</button>
+	<main class="main">
+		<div class="add">
+			<button class="add-button">Add Ticket</button>
+		</div>
 
-	<div class="tickets__list"></div>
+		<div class="tickets"></div>
+	</main>
 
-	<div class="modal">
-		<div class="modal__content">
-			<h3 class="modal__header"></h3>
-			<form class="modal__form" data-ticket-id="">
-				<div class="form__controls">
-					<label class="form__label" for="name">Название:</label>
-					<textarea class="form__short-description" type="text" id="name" name="name" rows="1"></textarea>
-					<label class="form__label" for="description">Описание:</label>
-					<textarea class="form__long-description" type="text" id="description" name="description"
-						rows="2"></textarea>
+	<div class="overlay hidden">
+		<div class="overlay__popup hidden">
+			<div class="overlay__popup-title"></div>
+			<div class="overlay__popup-text"></div>
+			<div class="overlay__popup-button">
+				<button class="overlay__popup-button-cancel">Cancel</button>
+				<button class="overlay__popup-button-ok">Ok</button>
+			</div>
+		</div>
+		<div class="overlay__wait hidden">
+			<div class="loadingio-spinner-spinner-qcsq8l1j4bg">
+				<div class="ldio-f922uukog49">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
 				</div>
-				<p class="form__description">Удалить?</p>
-				<div class="modal__buttons">
-					<button class="modal__button-cancel" type="button">Отмена</button>
-					<button class="modal__button-ok" type="submit">Ok</button>
-				</div>
-			</form>
+			</div>
 		</div>
 	</div>
 </body>

@@ -1,51 +1,36 @@
-import RequestContructor from './RequestContructor';
-import Modal from './Modal';
-import TicketsList from './TicketsList';
-import EventButton from './EventButton';
+import SendRequest from './SendRequest';
+import Events from './Events';
+import ChangeDom from './ChangeDom';
+import CreateTicketHtml from './CreateTicketHtml';
 
-const modalEl = document.querySelector('.modal');
-const modalFormEl = modalEl.querySelector('.modal__form');
-const modalHeaderEl = modalEl.querySelector('.modal__header');
-const modalFormControlsEl = modalEl.querySelector('.form__controls');
-const modalFormDescriptionEl = modalEl.querySelector('.form__description');
-const cancelBtnEl = modalEl.querySelector('.modal__button-cancel');
-const ticketsListEl = document.querySelector('.tickets__list');
-const addBtnEl = document.querySelector('.add-button');
+const sendRequest = new SendRequest();
+const changeDom = new ChangeDom();
+let events = new Events();
+const addButton = document.querySelector('.add-button');
+const buttonOk = document.querySelector('.overlay__popup-button-ok');
+const buttonCancel = document.querySelector('.overlay__popup-button-cancel');
+const overlay = document.querySelector('.overlay');
 
-const eventButton = new EventButton(
-  addBtnEl,
-  modalEl,
-  modalHeaderEl,
-  modalFormControlsEl,
-);
+function firstLoad(res) {
+  let response = res;
 
-eventButton.assignHandler();
+  response = JSON.parse(response);
 
-const requestContructor = new RequestContructor('https://localhost:3000');
+  for (const i of response) {
+    const createTicketHtml = new CreateTicketHtml(i.id, i.name, i.status, i.created);
+    const ticketWrapper = createTicketHtml.create();
 
-const modal = new Modal(
-  modalEl,
-  modalFormEl,
-  modalHeaderEl,
-  modalFormControlsEl,
-  modalFormDescriptionEl,
-  cancelBtnEl,
-  ticketsListEl,
-  requestContructor,
-);
+    events = new Events(ticketWrapper);
+    events.eventStatus();
+    events.eventChange();
+    events.eventDelete();
+    events.eventFullDescription();
+    changeDom.addTicket(ticketWrapper);
+  }
+}
 
-modal.assignCommonHandler();
-modal.assignCancelBtnHandler();
-
-const ticketsList = new TicketsList(
-  ticketsListEl,
-  modalEl,
-  modalFormEl,
-  modalHeaderEl,
-  modalFormControlsEl,
-  modalFormDescriptionEl,
-  requestContructor,
-);
-
-ticketsList.assignHandler();
-ticketsList.downloadTickets();
+sendRequest.firstLoad(firstLoad);
+events.addButton(addButton);
+events.confirmForm(buttonOk);
+events.closeForm(buttonCancel);
+events.overlayScroll(overlay);
